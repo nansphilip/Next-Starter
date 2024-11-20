@@ -1,0 +1,94 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id            String  @id @unique
+    name          String
+    // lastname      String
+    // firstname     String
+    email         String  @unique
+    emailVerified Boolean
+    image         String?
+    role          Role    @default(USER)
+    restricted    Boolean @default(false)
+
+    // One to Many
+    Session Session[]
+    Account Account[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("user")
+}
+
+enum Role {
+    USER
+    MODO
+    ADMIN
+}
+
+model Session {
+    id        String   @id @unique
+    expiresAt DateTime
+    ipAddress String?
+    userAgent String?
+
+    // Many to One
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("session")
+}
+
+model Account {
+    id         String @id @unique
+    accountId  String
+    providerId String
+
+    // Many to One
+    userId String
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    accessToken  String?
+    refreshToken String?
+    idToken      String?
+    expiresAt    DateTime?
+    password     String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("account")
+}
+
+model Verification {
+    id         String   @id @unique
+    identifier String
+    value      String
+    expiresAt  DateTime
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("verification")
+}
+
+model Fruits {
+    id   String @id @unique
+    name String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("fruits")
+}
