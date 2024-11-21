@@ -2,6 +2,9 @@ import Prisma from "@lib/prisma";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { headers } from "next/headers";
+import { SendEmail } from "./plunk";
+
+const baseUrl = process.env.BETTER_AUTH_URL;
 
 export const auth = betterAuth({
     database: prismaAdapter(Prisma, {
@@ -13,13 +16,12 @@ export const auth = betterAuth({
     emailVerification: {
         sendOnSignUp: true,
         autoSignInAfterVerification: true,
-        sendVerificationEmail: async ({ user, url, token }) => {
-            console.log("Verification email: ", '\n', url, '\n', process.env.BETTER_AUTH_URL + "/api/auth/verify-email?token=" + token + "&callbackURL=" + process.env.BETTER_AUTH_URL + "/profile");
-            // await SendEmail({
-            //     to: user.email,
-            //     subject: 'Verify your email address',
-            //     text: `Click the link to verify your email: ${url}`
-            // })
+        sendVerificationEmail: async ({ user, token }) => {
+            const callbackURL = "/profile";
+            const urlToken = baseUrl + "/api/auth/verify-email?token=" + token + "&callbackURL=" + baseUrl + callbackURL
+            
+            // Send email template
+            await SendEmail({email: user.email, url:urlToken});
         },
     },
     session: {
