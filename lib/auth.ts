@@ -10,6 +10,18 @@ export const auth = betterAuth({
     emailAndPassword: {
         enabled: true,
     },
+    emailVerification: {
+        sendOnSignUp: true,
+        autoSignInAfterVerification: true,
+        sendVerificationEmail: async ({ user, url, token }) => {
+            console.log("Verification email: ", '\n', url, '\n', process.env.BETTER_AUTH_URL + "/api/auth/verify-email?token=" + token + "&callbackURL=" + process.env.BETTER_AUTH_URL + "/profile");
+            // await SendEmail({
+            //     to: user.email,
+            //     subject: 'Verify your email address',
+            //     text: `Click the link to verify your email: ${url}`
+            // })
+        },
+    },
     session: {
         expiresIn: 60 * 30,
         updateAge: 60 * 5
