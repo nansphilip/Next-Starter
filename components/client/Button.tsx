@@ -5,7 +5,7 @@ import { combo } from "@lib/combo";
 import Link from "next/link";
 
 export type ButtonClientProps = {
-    type?: "link" | "button" | "submit";
+    type: "link" | "button" | "submit";
     href?: string | never;
     label: string;
     loadingLabel?: string;

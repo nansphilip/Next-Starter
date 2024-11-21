@@ -44,6 +44,12 @@ Next Starter is a fully auth-ready application.
   BETTER_AUTH_URL=http://localhost:3000
   ```
 
+  - Plunk private key ([Plunk Docs](https://docs.useplunk.com/getting-started/introduction))
+
+  ```js
+  PLUNK_API_KEY=plunk-private-key
+  ```
+
 - Generate the Prisma client
 
   ```bash

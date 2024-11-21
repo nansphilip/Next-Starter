@@ -8,7 +8,7 @@ type InputProps = {
     value?: string;
 
     type?: "text" | "email" | "password";
-    placeholder?: boolean;
+    placeholder?: string | boolean;
 
     classDiv?: string;
     classLabel?: string;
@@ -16,10 +16,13 @@ type InputProps = {
 };
 
 export default function InputClient(props: InputProps) {
-    const { label, onChange, value, type="text", placeholder = false, classDiv, classLabel, classInput } = props;
+    const { label, onChange, value, type = "text", placeholder = false, classDiv, classLabel, classInput } = props;
 
     const labelLowerCased = label.toLocaleLowerCase();
     const labelFirstLetterCapitalized = label[0].toLocaleUpperCase() + label.slice(1).toLocaleLowerCase();
+
+    const placeholderValue =
+        typeof placeholder === "string" ? placeholder : placeholder ? labelFirstLetterCapitalized : "";
 
     return (
         <div className={combo("flex flex-col gap-1", classDiv)}>
@@ -34,7 +37,7 @@ export default function InputClient(props: InputProps) {
                 type={type}
                 id={labelLowerCased}
                 name={labelLowerCased}
-                placeholder={placeholder ? labelFirstLetterCapitalized : ""}
+                placeholder={placeholderValue}
                 onChange={onChange}
                 value={value}
             />
