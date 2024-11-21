@@ -39,9 +39,11 @@ export default function RegisterClient() {
         });
 
         if (data) {
+            setMessage("Successfully registered.");
+            setMode("success");
             router.push("/profile");
         } else if (error) {
-            setMessage("Invalid credentials");
+            setMessage("Failed to register.");
             setMode("error");
         }
 

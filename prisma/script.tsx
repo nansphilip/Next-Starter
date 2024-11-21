@@ -1,22 +1,49 @@
 import Prisma from "@lib/prisma";
-import { userData, accountData } from "./data";
+import { fruitData, userData } from "./data";
 
 export const fixtures = async () => {
     try {
         // User table
-        for (const { id, name, email, emailVerified, image, role, restricted } of userData) {
-            await Prisma.user.create({
-                data: { id, name, email, emailVerified, image, role, restricted },
+        for (const { name, email, emailVerified, image, role, password } of userData) {
+            const createdUser = await Prisma.user.create({
+                data: {
+                    name,
+                    email,
+                    emailVerified,
+                    image,
+                    role,
+                    Account: {
+                        create: {
+                            providerId: "credential",
+                            accountId: "user-id",
+                            password,
+                        },
+                    },
+                },
+                include: {
+                    Account: true,
+                },
+            });
+
+            await Prisma.account.update({
+                where: {
+                    id: createdUser.Account[0].id,
+                },
+                data: {
+                    providerId: createdUser.Account[0].providerId,
+                    accountId: createdUser.id,
+                    password: createdUser.Account[0].password,
+                },
             });
         }
 
-        // Account table
-        for (const { id, accountId, providerId, userId, password } of accountData) {
-            await Prisma.account.create({
-                data: { id, accountId, providerId, userId, password },
+        for (const { name } of fruitData) {
+            await Prisma.fruit.create({
+                data: {
+                    name,
+                },
             });
         }
- 
 
         return true;
     } catch (error) {

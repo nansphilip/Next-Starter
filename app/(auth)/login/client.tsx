@@ -35,9 +35,11 @@ export default function LoginClient() {
         });
 
         if (data) {
+            setMessage("Successfully logged in.");
+            setMode("success");
             router.push("/profile");
         } else if (error) {
-            setMessage("Invalid credentials");
+            setMessage("Failed to login, invalid credentials.");
             setMode("error");
         }
 

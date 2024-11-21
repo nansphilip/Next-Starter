@@ -8,15 +8,12 @@ datasource db {
 }
 
 model User {
-    id            String  @id @unique
+    id            String  @id @unique @default(nanoid())
     name          String
-    // lastname      String
-    // firstname     String
     email         String  @unique
     emailVerified Boolean
     image         String?
     role          Role    @default(USER)
-    restricted    Boolean @default(false)
 
     // One to Many
     Session Session[]
@@ -35,7 +32,7 @@ enum Role {
 }
 
 model Session {
-    id        String   @id @unique
+    id        String   @id @unique @default(nanoid())
     expiresAt DateTime
     ipAddress String?
     userAgent String?
@@ -51,7 +48,7 @@ model Session {
 }
 
 model Account {
-    id         String @id @unique
+    id         String @id @unique @default(nanoid())
     accountId  String
     providerId String
 
@@ -61,7 +58,6 @@ model Account {
 
     accessToken  String?
     refreshToken String?
-    idToken      String?
     expiresAt    DateTime?
     password     String?
 
@@ -72,7 +68,7 @@ model Account {
 }
 
 model Verification {
-    id         String   @id @unique
+    id         String   @id @unique @default(nanoid())
     identifier String
     value      String
     expiresAt  DateTime
@@ -83,8 +79,8 @@ model Verification {
     @@map("verification")
 }
 
-model Fruits {
-    id   String @id @unique
+model Fruit {
+    id   String @id @unique @default(nanoid())
     name String
 
     createdAt DateTime @default(now())

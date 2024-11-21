@@ -6,7 +6,6 @@ CREATE TABLE `user` (
     `emailVerified` BOOLEAN NOT NULL,
     `image` VARCHAR(191) NULL,
     `role` ENUM('USER', 'MODO', 'ADMIN') NOT NULL DEFAULT 'USER',
-    `restricted` BOOLEAN NOT NULL DEFAULT false,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
@@ -37,7 +36,6 @@ CREATE TABLE `account` (
     `userId` VARCHAR(191) NOT NULL,
     `accessToken` VARCHAR(191) NULL,
     `refreshToken` VARCHAR(191) NULL,
-    `idToken` VARCHAR(191) NULL,
     `expiresAt` DATETIME(3) NULL,
     `password` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
