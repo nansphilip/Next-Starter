@@ -80,12 +80,16 @@ export default function RegisterClient() {
                 type="link"
                 href="/login"
                 className="text-sm text-gray-500"
-                label="Already registered?"
+                label="already-registered"
                 variant="underline"
                 padding="sm"
-            />
+            >
+                Already registered?
+            </ButtonClient>
             <FeedbackClient message={message} mode={mode} />
-            <ButtonClient type="button" onClick={handleSubmit} label="Register" isLoading={isLoading} />
+            <ButtonClient type="button" onClick={handleSubmit} label="register" isLoading={isLoading}>
+                Register
+            </ButtonClient>
         </div>
     );
 }

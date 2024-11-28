@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import ButtonClient, { ButtonClientProps } from "@comps/client/Button";
 import { signOut } from "@lib/client";
@@ -9,7 +9,7 @@ type LogoutClientProps = {
     className?: string;
     variant?: ButtonClientProps["variant"];
     padding?: ButtonClientProps["padding"];
-}
+};
 
 export default function LogoutClient(props: LogoutClientProps) {
     const { variant, padding } = props;
@@ -21,7 +21,7 @@ export default function LogoutClient(props: LogoutClientProps) {
     const handleClick = async () => {
         setIsLoading(true);
         const { data, error } = await signOut();
-        
+
         if (data) {
             router.push("/");
         } else if (error) {
@@ -32,6 +32,15 @@ export default function LogoutClient(props: LogoutClientProps) {
     };
 
     return (
-        <ButtonClient type="button" variant={variant} label="Logout" padding={padding} isLoading={isLoading} onClick={handleClick} />
+        <ButtonClient
+            type="button"
+            variant={variant}
+            label="Logout"
+            padding={padding}
+            isLoading={isLoading}
+            onClick={handleClick}
+        >
+            Logout
+        </ButtonClient>
     );
 }

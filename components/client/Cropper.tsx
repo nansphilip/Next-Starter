@@ -111,10 +111,10 @@ export default function ImageCropperModalClient(
                     </label>
                 </div>
                 <div className="flex flex-row gap-3">
-                    <ButtonClient type="button" label="cancelCrop" className="w-1/2" variant="outline" onClick={() => setImageFile(undefined)}>
+                    <ButtonClient type="button" label="cancel-crop" className="w-1/2" variant="outline" onClick={() => setImageFile(undefined)}>
                         Cancel
                     </ButtonClient>
-                    <ButtonClient type="button" label="cropImage" className="w-1/2" onClick={saveImage}>
+                    <ButtonClient type="button" label="crop-image" className="w-1/2" onClick={saveImage}>
                         Crop image
                     </ButtonClient>
                 </div>

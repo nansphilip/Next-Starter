@@ -24,16 +24,56 @@ export default function HeaderClient(props: HeaderClientProps) {
 
             {/* Desktop */}
             <nav className="flex flex-row gap-5 max-md:hidden">
-                <ButtonClient type="link" href="/" label="Home" variant="ghost" ring={false} />
+                <ButtonClient
+                    type="link"
+                    href="/"
+                    label="Home"
+                    variant="ghost"
+                    ring={false}
+                >
+                    Home
+                </ButtonClient>
                 {session ? (
-                    <ButtonClient type="link" href="/profile" label="Profile" variant="ghost" ring={false} />
+                    <ButtonClient
+                        type="link"
+                        href="/profile"
+                        label="Profile"
+                        variant="ghost"
+                        ring={false}
+                    >
+                        Profile
+                    </ButtonClient>
                 ) : (
                     <>
-                        <ButtonClient type="link" href="/register" label="Register" variant="ghost" ring={false} />
-                        <ButtonClient type="link" href="/login" label="Login" variant="ghost" ring={false} />
+                        <ButtonClient
+                            type="link"
+                            href="/register"
+                            label="Register"
+                            variant="ghost"
+                            ring={false}
+                        >
+                            Register
+                        </ButtonClient>
+                        <ButtonClient
+                            type="link"
+                            href="/login"
+                            label="Login"
+                            variant="ghost"
+                            ring={false}
+                        >
+                            Login
+                        </ButtonClient>
                     </>
                 )}
-                <ButtonClient type="link" href="/cropper" label="Cropper" variant="ghost" ring={false} />
+                <ButtonClient
+                    type="link"
+                    href="/cropper"
+                    label="Cropper"
+                    variant="ghost"
+                    ring={false}
+                >
+                    Cropper
+                </ButtonClient>
             </nav>
         </header>
     );
