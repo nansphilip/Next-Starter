@@ -4,11 +4,12 @@ import { combo } from "@lib/combo";
 
 type InputProps = {
     label: string;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    value?: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    value: string;
 
-    type?: "text" | "email" | "password";
+    type: "text" | "email" | "password";
     placeholder?: string | boolean;
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 
     classDiv?: string;
     classLabel?: string;
@@ -16,17 +17,35 @@ type InputProps = {
 };
 
 export default function InputClient(props: InputProps) {
-    const { label, onChange, value, type = "text", placeholder = false, classDiv, classLabel, classInput } = props;
+    const {
+        label,
+        onChange,
+        value,
+        type = "text",
+        placeholder = false,
+        onBlur,
+        classDiv,
+        classLabel,
+        classInput,
+    } = props;
 
     const labelLowerCased = label.toLocaleLowerCase();
-    const labelFirstLetterCapitalized = label[0].toLocaleUpperCase() + label.slice(1).toLocaleLowerCase();
+    const labelFirstLetterCapitalized =
+        label[0].toLocaleUpperCase() + label.slice(1).toLocaleLowerCase();
 
     const placeholderValue =
-        typeof placeholder === "string" ? placeholder : placeholder ? labelFirstLetterCapitalized : "";
+        typeof placeholder === "string"
+            ? placeholder
+            : placeholder
+            ? labelFirstLetterCapitalized
+            : "";
 
     return (
         <div className={combo("flex flex-col gap-1", classDiv)}>
-            <label className={combo("text-gray-600", classLabel)} htmlFor={labelLowerCased}>
+            <label
+                className={combo("text-gray-600", classLabel)}
+                htmlFor={labelLowerCased}
+            >
                 {labelFirstLetterCapitalized}
             </label>
             <input
@@ -40,6 +59,7 @@ export default function InputClient(props: InputProps) {
                 placeholder={placeholderValue}
                 onChange={onChange}
                 value={value}
+                onBlur={onBlur}
             />
         </div>
     );

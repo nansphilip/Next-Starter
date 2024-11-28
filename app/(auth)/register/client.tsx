@@ -53,9 +53,9 @@ export default function RegisterClient() {
     return (
         <div className="flex flex-col items-center justify-center gap-4">
             <div className="space-y-2">
-                <InputClient label="firstname" onChange={(e) => setFirstname(e.target.value)} value={firstname} />
-                <InputClient label="lastname" onChange={(e) => setLastname(e.target.value)} value={lastname} />
-                <InputClient label="email" onChange={(e) => setEmail(e.target.value)} value={email} />
+                <InputClient label="firstname" type="text" onChange={(e) => setFirstname(e.target.value)} value={firstname} />
+                <InputClient label="lastname" type="text" onChange={(e) => setLastname(e.target.value)} value={lastname} />
+                <InputClient label="email" type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
                 <div className="flex flex-row items-end gap-1.5">
                     <InputClient
                         label="password"

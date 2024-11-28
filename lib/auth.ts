@@ -18,10 +18,42 @@ export const auth = betterAuth({
         autoSignInAfterVerification: true,
         sendVerificationEmail: async ({ user, token }) => {
             const callbackURL = "/profile";
-            const urlToken = baseUrl + "/api/auth/verify-email?token=" + token + "&callbackURL=" + baseUrl + callbackURL
-            
+            const urlToken =
+                baseUrl +
+                "/api/auth/verify-email?token=" +
+                token +
+                "&callbackURL=" +
+                baseUrl +
+                callbackURL;
+
             // Send email template
-            await SendEmail({email: user.email, url:urlToken});
+            await SendEmail({
+                subject: "Welcome! Let's verify your email.",
+                email: user.email,
+                url: urlToken,
+            });
+        },
+    },
+    user: {
+        changeEmail: {
+            enabled: true,
+            sendChangeEmailVerification: async ({ newEmail, token }) => {
+                const callbackURL = "/profile";
+                const urlToken =
+                    baseUrl +
+                    "/api/auth/verify-email?token=" +
+                    token +
+                    "&callbackURL=" +
+                    baseUrl +
+                    callbackURL;
+
+                // Send email template
+                await SendEmail({
+                    subject: "Hey! Let's verify your new email.",
+                    email: newEmail,
+                    url: urlToken,
+                });
+            },
         },
     },
     session: {
@@ -31,7 +63,7 @@ export const auth = betterAuth({
         //     enabled: true,
         //     maxAge: 60 * 5
         // }
-    }
+    },
 });
 
 const { api } = auth;

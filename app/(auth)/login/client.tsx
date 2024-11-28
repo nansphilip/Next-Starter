@@ -51,6 +51,7 @@ export default function LoginClient() {
             <div className="space-y-2">
                 <InputClient
                     label="email"
+                    type="email"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                 />
