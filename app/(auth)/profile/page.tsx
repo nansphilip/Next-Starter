@@ -11,6 +11,8 @@ export default async function ProfilePage() {
         redirect("/login");
     }
 
+    console.log(session);
+
     const expirationDate = new Date(session.session.expiresAt);
     const expirationFormatted = expirationDate.toLocaleTimeString().split(":").slice(0, 2).join("h");
 

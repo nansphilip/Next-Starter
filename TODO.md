@@ -12,6 +12,7 @@ Complete auth and user management
   - [ ] Auth0
   - [ ] Magic link
   - [ ] Passkey
+  - [ ] 2FA
   - [ ] Logout
 
 - [ ] Edit profile
@@ -29,6 +30,10 @@ Complete auth and user management
   - [ ] Cookie timing
   - [ ] Auth protected
   - [ ] Role protected
+
+- [ ] Protection pages
+  - [ ] Middleware
+  - [ ] In each component
 
 - [ ] Internationalization
 

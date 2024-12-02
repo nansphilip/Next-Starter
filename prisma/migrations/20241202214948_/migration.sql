@@ -17,6 +17,7 @@ CREATE TABLE `user` (
 -- CreateTable
 CREATE TABLE `session` (
     `id` VARCHAR(191) NOT NULL,
+    `token` VARCHAR(191) NOT NULL,
     `expiresAt` DATETIME(3) NOT NULL,
     `ipAddress` VARCHAR(191) NULL,
     `userAgent` VARCHAR(191) NULL,
@@ -36,7 +37,9 @@ CREATE TABLE `account` (
     `userId` VARCHAR(191) NOT NULL,
     `accessToken` VARCHAR(191) NULL,
     `refreshToken` VARCHAR(191) NULL,
-    `expiresAt` DATETIME(3) NULL,
+    `accessTokenExpiresAt` DATETIME(3) NULL,
+    `refreshTokenExpiresAt` DATETIME(3) NULL,
+    `scope` VARCHAR(191) NULL,
     `password` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
